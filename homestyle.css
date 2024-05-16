@@ -16,6 +16,7 @@
 
 
 .container {
+  width: 30%;
   background: var(--primary-color);
   padding: 25px;
   border-radius: 10px;
