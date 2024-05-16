@@ -1,11 +1,29 @@
-function getDailyQuote() {
-  const apiUrl = "https://api.quotable.io/random?tags=inspirational";
+// function getDailyQuote() {
+//   const apiUrl = "https://api.quotable.io/random?tags=inspirational";
 
-  fetch(apiUrl)
+//   fetch(apiUrl)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       const quote = data.content;
+//       const author = data.author;
+//       document.querySelector("p.quote").innerHTML = `"${quote}"`;
+//       document.querySelector("p.author").innerHTML = `-${author}`;
+//     })
+//     .catch((error) => {
+//       console.error("Error fetching quote:", error);
+//     });
+// }
+
+function getDailyQuote() {
+  const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+
+  const apiUrl = "https://zenquotes.io/api/today";
+
+  fetch(proxyUrl + apiUrl)
     .then((response) => response.json())
     .then((data) => {
-      const quote = data.content;
-      const author = data.author;
+      const quote = data[0].q;
+      const author = data[0].a;
       document.querySelector("p.quote").innerHTML = `"${quote}"`;
       document.querySelector("p.author").innerHTML = `-${author}`;
     })
@@ -13,6 +31,7 @@ function getDailyQuote() {
       console.error("Error fetching quote:", error);
     });
 }
+
 
 // Load the daily quote when the page loads
 document.addEventListener("DOMContentLoaded", function () {
