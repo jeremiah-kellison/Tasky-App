@@ -5,78 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tasky</title>
     <link rel="stylesheet" type="text/css" href="homestyle.css" />
-
+    <link rel="stylesheet" type="text/css" href="generalstyle.css" />
 </head>
-  </head>
-  <body>
-    <!-- Div Containing Header and Nav -->
+<body>
     <div class="header-box">
-      <header>
-        <h1>Tasky</h1>
-        <nav>
-            <ul>
-              <li><a href="home.html">Home</a></li>
-              <li><a href="todo.html">Todo</a></li>
-              <li><a href="projects.html">Projects</a></li>
-            </ul>
-          </nav>
-      </header>
-      
+        <header>
+            <h1>Tasky</h1>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="todo.html">Todo</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                </ul>
+            </nav>
+        </header>
     </div>
     <div class="quotes-container">
-    <div class="daily-quote">
-        <h3>Daily Quote</h3>
-        <p class="quote"></p>
-        <p class="author"></p>
+        <div class="daily-quote">
+            <h3>Daily Quote</h3>
+            <p class="quote"></p>
+            <p class="author"></p>
+        </div>
+        <div class="bible-verse">
+            <h3>Bible Verse</h3>
+            <p class="verse"></p>
+            <p class="reference"></p>
+        </div>
     </div>
-
-    <div class="bible-verse">
-        <h3>Bible Verse</h3>
-        <p class="verse"></p>
-        <p class="reference"></p>
-    </div>
-</div>
 
     <div class="container">
         <div class="todo-header">
             <h2 id="datetime"></h2>
             <img src="images/checklist.png" height="50px" />
-       </div>
-       <div class="todo-body">
-        <input
-            type="text"
-            id="todoText"
-            class="todo-input"
-            placeholder="Add your items"
-        />
-        <img
-            src="images/plus.png"
-            alt="+"
-            id="AddUpdateClick"
-            onclick="CreateToDoItems();"
-        />
         </div>
-
-
-
-
+        <div class="todo-body">
+            <input
+                type="text"
+                id="todoText"
+                class="todo-input"
+                placeholder="Add your items"
+            />
+            <img
+                src="images/plus.png"
+                alt="+"
+                id="AddUpdateClick"
+            />
+        </div>
         <h5 id="Alert"></h5>
-        <ul class="todoItems" id="list-items" class="list-items"></ul>
-
-
-
-
-
-
+        <ul class="todoItems" id="list-items"></ul>
     </div>
-   
 
-
-
+    <div class="container">
+        <div class="todo-header">
+            <h2 id="datetime2"></h2>
+            <img src="images/checklist.png" height="50px" />
+        </div>
+        <div class="todo-body">
+            <input
+                type="text"
+                id="todoText2"
+                class="todo-input"
+                placeholder="Add your items"
+            />
+            <img
+                src="images/plus.png"
+                alt="+"
+                id="AddUpdateClick2"
+            />
+        </div>
+        <h5 id="Alert2"></h5>
+        <ul class="todoItems" id="list-items2"></ul>
+    </div>
 
     <script type="text/javascript" src="todo.js"></script>
     <script type="text/javascript" src="quote.js"></script>
-
-
-  </body>
+</body>
 </html>

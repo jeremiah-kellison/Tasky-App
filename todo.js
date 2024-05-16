@@ -1,186 +1,235 @@
-const todoValue = document.getElementById("todoText");
-const todoAlert = document.getElementById("Alert");
-const listItems = document.getElementById("list-items");
-const addUpdate = document.getElementById("AddUpdateClick");
-
-
-let todo = JSON.parse(localStorage.getItem("todo-list"));
-if (!todo) {
-  todo = [];
-}
-
-function CreateToDoItems() {
-    if (todoValue.value === "") {
-      todoAlert.innerText = "Please enter your todo text!";
-      todoValue.focus();
-    } else {
-      let IsPresent = false;
-      todo.forEach((element) => {
-        if (element.item == todoValue.value) {
-          IsPresent = true;
-        }
-      });
-  
-      if (IsPresent) {
-        setAlertMessage("This item already present in the list!");
-        return;
-      }
-  
-      let li = document.createElement("li");
-      const todoItems = `<div title="Click to Complete" onclick="CompletedToDoItems(this)">${todoValue.value}</div><div>
-                      <img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="images/pencil.png" />
-                      <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="images/delete.png" /></div></div>`;
-      li.innerHTML = todoItems;
-      listItems.appendChild(li);
-  
-      if (!todo) {
-        todo = [];
-      }
-      let itemList = { item: todoValue.value, status: false };
-      todo.push(itemList);
-      setLocalStorage();
+class ToDoList {
+  constructor(listId, alertId, textId, addUpdateId, datetimeId, title) {
+    this.listItems = document.getElementById(listId);
+    this.todoAlert = document.getElementById(alertId);
+    this.todoValue = document.getElementById(textId);
+    this.addUpdate = document.getElementById(addUpdateId);
+    this.currentDate = this.getTodayDate();
+    this.todo = this.readTodoItemsByDate(this.currentDate, listId);
+    if (!this.todo) {
+      this.todo = [];
     }
-    todoValue.value = "";
-    setAlertMessage("Todo item Created Successfully!");
+    this.init();
+    this.createTitleElement(datetimeId, title);
   }
 
+  createTitleElement(datetimeId, title) {
+    const datetimeElement = document.getElementById(datetimeId);
+    datetimeElement.innerText = title;
+  }
 
-  function ReadToDoItems() {
-    todo.forEach((element) => {
+  getTodayDate() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, "0");
+    const day = now.getDate().toString().padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  readTodoItemsByDate(date, listId) {
+    const todo = JSON.parse(
+      localStorage.getItem(`todo-list-${date}-${listId}`)
+    );
+    return todo || [];
+  }
+
+  setLocalStorageByDate(date, todo, listId) {
+    localStorage.setItem(`todo-list-${date}-${listId}`, JSON.stringify(todo));
+  }
+
+  init() {
+    this.addUpdate.addEventListener("click", () => this.createToDoItems());
+    this.readToDoItems();
+    this.listItems.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target.classList.contains("edit")) {
+        this.editTask(target);
+      } else if (target.classList.contains("delete")) {
+        this.deleteTask(target);
+      } else if (target.tagName === "DIV") {
+        this.completeTask(target);
+      }
+    });
+  }
+
+  createToDoItems() {
+    if (this.todoValue.value === "") {
+      this.todoAlert.innerText = "Please enter your todo text!";
+      this.todoValue.focus();
+    } else {
+      let isPresent = false;
+      this.todo.forEach((element) => {
+        if (element.item === this.todoValue.value) {
+          isPresent = true;
+        }
+      });
+
+      if (isPresent) {
+        this.setAlertMessage("This item already present in the list!");
+        return;
+      }
+
+      let li = document.createElement("li");
+      const todoItems = `<div title="Click to Complete">${this.todoValue.value}</div><div>
+                      <img class="edit todo-controls" src="images/pencil.png" />
+                      <img class="delete todo-controls" src="images/delete.png" /></div></div>`;
+      li.innerHTML = todoItems;
+      this.listItems.appendChild(li);
+
+      if (!this.todo) {
+        this.todo = [];
+      }
+      let itemList = { item: this.todoValue.value, status: false };
+      this.todo.push(itemList);
+      this.setLocalStorageByDate(
+        this.currentDate,
+        this.todo,
+        this.listItems.id
+      );
+    }
+    this.todoValue.value = "";
+    this.setAlertMessage("Todo item Created Successfully!");
+  }
+
+  readToDoItems() {
+    this.listItems.innerHTML = ""; // Clear the list before adding items
+    this.todo.forEach((element) => {
       let li = document.createElement("li");
       let style = "";
       if (element.status) {
         style = "style='text-decoration: line-through'";
       }
-      const todoItems = `<div ${style} title="Click to Complete" onclick="CompletedToDoItems(this)">${
-        element.item
-      }
-      ${
-        style === ""
-          ? ""
-          : '<img class="todo-controls" src="images/check-mark.png" />'
-      }</div><div>
-      ${
-        style === ""
-          ? '<img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="images/pencil.png" />'
-          : ""
-      }
-      <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="images/delete.png" /></div></div>`;
+      const todoItems = `<div ${style} title="Click to Complete">${element.item}
+        ${
+          style === ""
+            ? ""
+            : '<img class="todo-controls" src="images/check-mark.png" />'
+        }</div><div>
+        ${
+          style === ""
+            ? '<img class="edit todo-controls" src="images/pencil.png" />'
+            : ""
+        }
+        <img class="delete todo-controls" src="images/delete.png" /></div></div>`;
       li.innerHTML = todoItems;
-      listItems.appendChild(li);
+      this.listItems.appendChild(li);
     });
   }
-  ReadToDoItems();
 
+  setAlertMessage(message) {
+    this.todoAlert.removeAttribute("class");
+    this.todoAlert.innerText = message;
+    setTimeout(() => {
+      this.todoAlert.classList.add("toggleMe");
+    }, 1000);
+  }
 
+  deleteTask(element) {
+    const itemText = element.parentElement.parentElement
+      .querySelector("div")
+      .textContent.trim();
+    const index = this.todo.findIndex((task) => task.item === itemText);
 
-  function UpdateToDoItems(e) {
-    if (
-      e.parentElement.parentElement.querySelector("div").style.textDecoration ===
-      ""
-    ) {
-      todoValue.value =
-        e.parentElement.parentElement.querySelector("div").innerText;
-      updateText = e.parentElement.parentElement.querySelector("div");
-      addUpdate.setAttribute("onclick", "UpdateOnSelectionItems()");
-      addUpdate.setAttribute("src", "images/refresh.png");
-      todoValue.focus();
+    if (index > -1) {
+      const confirmDelete = confirm(
+        `Are you sure you want to delete "${itemText}"?`
+      );
+
+      if (confirmDelete) {
+        this.todo.splice(index, 1);
+        element.parentElement.parentElement.remove();
+        this.setLocalStorageByDate(
+          this.currentDate,
+          this.todo,
+          this.listItems.id
+        );
+      }
     }
   }
-  
-  function UpdateOnSelectionItems() {
-    let IsPresent = false;
-    todo.forEach((element) => {
-      if (element.item == todoValue.value) {
-        IsPresent = true;
-      }
-    });
-  
-    if (IsPresent) {
-      setAlertMessage("This item already present in the list!");
+
+  editTask(element) {
+    const itemText =
+      element.parentElement.parentElement.querySelector("div").innerText;
+    this.todoValue.value = itemText;
+    this.addUpdate.onclick = () => this.updateTask(itemText);
+    this.addUpdate.src = "images/refresh.png";
+    this.todoValue.focus();
+  }
+
+  updateTask(oldItemText) {
+    const newItemText = this.todoValue.value.trim();
+    if (newItemText === "") {
+      this.setAlertMessage("Please enter your todo text!");
+      this.todoValue.focus();
       return;
     }
-  
-    todo.forEach((element) => {
-      if (element.item == updateText.innerText.trim()) {
-        element.item = todoValue.value;
-      }
-    });
-    setLocalStorage();
-  
-    updateText.innerText = todoValue.value;
-    addUpdate.setAttribute("onclick", "CreateToDoItems()");
-    addUpdate.setAttribute("src", "images/plus.png");
-    todoValue.value = "";
-    setAlertMessage("Todo item Updated Successfully!");
-  }
 
-  function DeleteToDoItems(e) {
-    let deleteValue =
-      e.parentElement.parentElement.querySelector("div").innerText;
-  
-    if (confirm(`Are you sure. Due you want to delete this ${deleteValue}!`)) {
-      e.parentElement.parentElement.setAttribute("class", "deleted-item");
-      todoValue.focus();
-  
-      todo.forEach((element) => {
-        if (element.item == deleteValue.trim()) {
-          todo.splice(element, 1);
-        }
-      });
-  
-      setTimeout(() => {
-        e.parentElement.parentElement.remove();
-      }, 1000);
-  
-      setLocalStorage();
+    const index = this.todo.findIndex((task) => task.item === oldItemText);
+    if (index > -1) {
+      this.todo[index].item = newItemText;
+      this.readToDoItems();
+      this.setLocalStorageByDate(
+        this.currentDate,
+        this.todo,
+        this.listItems.id
+      );
+      this.addUpdate.onclick = () => this.createToDoItems();
+      this.addUpdate.src = "images/plus.png";
+      this.todoValue.value = "";
+      this.setAlertMessage("Todo item Updated Successfully!");
     }
   }
 
-
-  function CompletedToDoItems(e) {
-    if (e.parentElement.querySelector("div").style.textDecoration === "") {
+  completeTask(element) {
+    const itemText = element.innerText;
+    const index = this.todo.findIndex((task) => task.item === itemText);
+    if (index > -1) {
+      element.style.textDecoration = "line-through";
       const img = document.createElement("img");
-      img.src = "/images/check-mark.png";
+      img.src = "images/check-mark.png";
       img.className = "todo-controls";
-      e.parentElement.querySelector("div").style.textDecoration = "line-through";
-      e.parentElement.querySelector("div").appendChild(img);
-      e.parentElement.querySelector("img.edit").remove();
-  
-      todo.forEach((element) => {
-        if (
-          e.parentElement.querySelector("div").innerText.trim() == element.item
-        ) {
-          element.status = true;
-        }
-      });
-      setLocalStorage();
-      setAlertMessage("Todo item Completed Successfully!");
+      element.appendChild(img);
+      element.parentElement.querySelector(".edit").remove();
+      this.todo[index].status = true;
+      this.setLocalStorageByDate(
+        this.currentDate,
+        this.todo,
+        this.listItems.id
+      );
+      this.setAlertMessage("Todo item Completed Successfully!");
     }
   }
-
-  function setLocalStorage() {
-    localStorage.setItem("todo-list", JSON.stringify(todo));
-  }
-  function setAlertMessage(message) {
-  todoAlert.removeAttribute("class");
-  todoAlert.innerText = message;
-  setTimeout(() => {
-    todoAlert.classList.add("toggleMe");
-  }, 1000);
 }
 
+function addDaysToDate(inputDate, daysToAdd) {
+  const date = new Date(inputDate);
+  date.setDate(date.getDate() + daysToAdd);
+  
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
 
-
-
-function dateTime(){
-    var now = new Date();
-    var month = now.getMonth() + 1;
-    var day = now.getDate();
-    var year = now.getFullYear();
-    var datetime = month + "/" + day + "/" + year;
-
-  document.getElementById("datetime").innerHTML = datetime;
-
+  return `${day}-${month}-${year}`;
 }
-dateTime();
+
+const currentDate = new Date(); // Current date
+const today = addDaysToDate(currentDate, 0);
+const nextDay = addDaysToDate(currentDate, 1);
+
+// Instantiate ToDoList objects for each todo list
+const todoList = new ToDoList(
+  "list-items",
+  "Alert",
+  "todoText",
+  "AddUpdateClick",
+  "datetime",
+  today
+);
+const todoList2 = new ToDoList(
+  "list-items2",
+  "Alert2",
+  "todoText2",
+  "AddUpdateClick2",
+  "datetime2",
+  nextDay
+);

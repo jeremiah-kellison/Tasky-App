@@ -13,48 +13,7 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: "Poppins", sans-serif;
-}
 
-.header-box header {
-  margin: 10px;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background-color: var(--primary-color);
-  color: var(--fith-color);
-  padding: 20px;
-  border: var(--accent-color) 2px solid;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-box header nav ul li {
-  display: inline;
-  margin: 20px;
-}
-
-.header-box header nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.header-box header nav ul li a {
-  color: var(--fith-color);
-  text-decoration: none;
-  transition: color 0.3s ease, font-size 0.3s ease;
-}
-
-.header-box header nav ul li a:hover {
-  color: var(--secondary-color);
-  font-size: 18px;
-}
 
 .container {
   background: var(--primary-color);
