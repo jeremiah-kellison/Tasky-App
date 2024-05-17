@@ -214,7 +214,17 @@ function addDaysToDate(inputDate, daysToAdd) {
 
 const currentDate = new Date(); // Current date
 const today = addDaysToDate(currentDate, 0);
-const nextDay = addDaysToDate(currentDate, 1);
+const day_1 = addDaysToDate(currentDate, 1);
+const day_2 = addDaysToDate(currentDate, 2);
+const day_3 = addDaysToDate(currentDate, 3);
+const day_4 = addDaysToDate(currentDate, 4);
+const day_5 = addDaysToDate(currentDate, 5);
+const day_6 = addDaysToDate(currentDate, 6);
+
+
+
+
+
 
 // Instantiate ToDoList objects for each todo list
 const todoList = new ToDoList(
@@ -231,5 +241,48 @@ const todoList2 = new ToDoList(
   "todoText2",
   "AddUpdateClick2",
   "datetime2",
-  nextDay
+  day_1
 );
+const todoList3 = new ToDoList(
+  "list-items3",
+  "Alert3",
+  "todoText3",
+  "AddUpdateClick3",
+  "datetime3",
+  day_2
+);
+const todoList4 = new ToDoList(
+  "list-items4",
+  "Alert4",
+  "todoText4",
+  "AddUpdateClick4",
+  "datetime4",
+  day_3
+);
+const todoList5 = new ToDoList(
+  "list-items5",
+  "Alert5",
+  "todoText5",
+  "AddUpdateClick5",
+  "datetime5",
+  day_4
+);
+const todoList6 = new ToDoList(
+  "list-items6",
+  "Alert6",
+  "todoText6",
+  "AddUpdateClick6",
+  "datetime6",
+  day_5
+);
+const todoList7 = new ToDoList(
+  "list-items7",
+  "Alert7",
+  "todoText7",
+  "AddUpdateClick7",
+  "datetime7",
+  day_6
+);
+
+
+
