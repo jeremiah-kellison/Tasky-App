@@ -15,21 +15,21 @@
 // }
 
 function getDailyQuote() {
-  const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 
-  const apiUrl = "https://zenquotes.io/api/today";
+  const apiUrl = "https://api.quotable.io/random";
 
-  fetch(proxyUrl + apiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      const quote = data[0].q;
-      const author = data[0].a;
-      document.querySelector("p.quote").innerHTML = `"${quote}"`;
-      document.querySelector("p.author").innerHTML = `-${author}`;
-    })
-    .catch((error) => {
-      console.error("Error fetching quote:", error);
-    });
+   fetch(apiUrl)
+  .then((response) => response.json())
+  .then((data) => {
+    const quoteText = data.content;
+    const quoteAuthor = data.author;
+
+    document.querySelector("p.quote").innerHTML = quoteText;
+    document.querySelector("p.author").innerHTML = `-${quoteAuthor}`;
+  })
+  .catch((error) => {
+    console.error("Error fetching quote:", error);
+  });
 }
 
 
