@@ -1,0 +1,75 @@
+project-container {
+    margin: 20px;
+    padding: 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 10px;
+}
+
+.project-container h2 {
+    margin-bottom: 10px;
+}
+
+#project-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+}
+
+#project-form label {
+    margin-bottom: 5px;
+}
+
+#project-form input {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+#project-form button {
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: var(--fith-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#project-form button:hover {
+    background-color: var(--secondary-color);
+}
+.project {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 10px;
+}
+
+.add-task-btn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: var(--primary-color);
+    color: var(--fith-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.task {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid var(--tertiary-color);
+    border-radius: 5px;
+}
+.task-options {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.delete-task-btn {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: var(--fourth-color);
+    color: var(--accent-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

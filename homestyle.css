@@ -102,6 +102,9 @@ li {
 
 .quotes-container {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .daily-quote,
@@ -182,9 +185,32 @@ li.deleted-item {
 }
 
 /* Media Queries */
-@media only screen and (max-width: 768px) {
-  .container {
-    width: 90%;
-    margin: 0 auto;
+@media only screen and (max-width: 1024px) {
+  .daily-quote,
+  .bible-verse {
+    width: 100%;
+    margin: 10px 0;
   }
+  .container {
+    width: 50%;
+    margin: 10px auto;
+  }
+  
+}
+@media only screen and (max-width: 768px) {
+
+.quotes-container {
+  flex-direction: column;
+}
+
+.daily-quote,
+.bible-verse {
+  width: 90%;
+  margin: 10px auto;
+}
+.container {
+  width: 90%;
+  margin: 10px auto;
+}
+
 }

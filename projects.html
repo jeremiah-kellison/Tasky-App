@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasky</title>
+    <link rel="stylesheet" type="text/css" href="generalstyle.css" />
+    <link rel="stylesheet" type="text/css" href="projectsstyles.css">
+
+</head>
+<body>
+    <div class="header-box">
+        <header>
+          <h1>Tasky<span id="time"></span></h1> 
+          <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="todo.html">Todo</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                </ul>
+            </nav>
+        </header>
+    
+
+
+    <div class="project-container">
+        <h2>Create New Project</h2>
+        <form id="project-form">
+            <label for="project-title">Project Title:</label>
+            <input type="text" id="project-title" required>
+            <label for="project-due-date">Due Date:</label>
+            <input type="date" id="project-due-date" required>
+            <button type="submit">Create Project</button>
+        </form>
+    </div>
+<div id="project-list" class="project-container"></div>
+
+    
+
+   
+    <script type="text/javascript" src="beattime.js"></script>
+    <script type="text/javascript" src="projects.js"></script>
+
+</body>
+</html>
