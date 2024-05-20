@@ -92,7 +92,7 @@ class ToDoList {
   }
 
   readToDoItems() {
-    this.listItems.innerHTML = ""; // Clear the list before adding items
+    this.listItems.innerHTML = "";
     this.todo.forEach((element) => {
       let li = document.createElement("li");
       let style = "";
@@ -204,15 +204,15 @@ class ToDoList {
 function addDaysToDate(inputDate, daysToAdd) {
   const date = new Date(inputDate);
   date.setDate(date.getDate() + daysToAdd);
-  
-  const day = date.getDate().toString().padStart(2, '0');
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
   const year = date.getFullYear();
 
   return `${day}-${month}-${year}`;
 }
 
-const currentDate = new Date(); // Current date
+const currentDate = new Date();
 const today = addDaysToDate(currentDate, 0);
 const day_1 = addDaysToDate(currentDate, 1);
 const day_2 = addDaysToDate(currentDate, 2);
@@ -221,12 +221,6 @@ const day_4 = addDaysToDate(currentDate, 4);
 const day_5 = addDaysToDate(currentDate, 5);
 const day_6 = addDaysToDate(currentDate, 6);
 
-
-
-
-
-
-// Instantiate ToDoList objects for each todo list
 const todoList = new ToDoList(
   "list-items",
   "Alert",
@@ -283,6 +277,3 @@ const todoList7 = new ToDoList(
   "datetime7",
   day_6
 );
-
-
-

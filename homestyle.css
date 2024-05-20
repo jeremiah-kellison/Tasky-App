@@ -13,8 +13,6 @@
   box-sizing: border-box;
 }
 
-
-
 .container {
   width: 30%;
   background: var(--primary-color);
@@ -103,47 +101,42 @@ li {
 }
 
 .quotes-container {
-    display: flex;
-  }
-  
-  .daily-quote,
-  .bible-verse {
-    width: 50%; /* Each box takes 50% of the screen */
-    flex: 1; /* Each box grows to fill available space equally */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px; /* Add margin between the boxes */
-    background-color: var(--primary-color);
-    border: 2px solid var(--accent-color);
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .daily-quote h3,
-  .bible-verse h3 {
-    color: var(--fith-color);
-    margin-bottom: 10px;
-  }
-  
-  .daily-quote .quote,
-  .bible-verse .verse {
-    font-style: italic;
-    color: var(--accent-color);
-  }
-  
-  .daily-quote .author,
-  .bible-verse .reference {
-    color: var(--accent-color);
-    font-weight: bold;
-  }
-  
-  
+  display: flex;
+}
 
+.daily-quote,
+.bible-verse {
+  width: 50%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  background-color: var(--primary-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
 
+.daily-quote h3,
+.bible-verse h3 {
+  color: var(--fith-color);
+  margin-bottom: 10px;
+}
 
+.daily-quote .quote,
+.bible-verse .verse {
+  font-style: italic;
+  color: var(--accent-color);
+}
+
+.daily-quote .author,
+.bible-verse .reference {
+  color: var(--accent-color);
+  font-weight: bold;
+}
 
 @keyframes new-item-animation {
   from {

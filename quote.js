@@ -15,25 +15,22 @@
 // }
 
 function getDailyQuote() {
-
   const apiUrl = "https://api.quotable.io/random";
 
-   fetch(apiUrl)
-  .then((response) => response.json())
-  .then((data) => {
-    const quoteText = data.content;
-    const quoteAuthor = data.author;
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      const quoteText = data.content;
+      const quoteAuthor = data.author;
 
-    document.querySelector("p.quote").innerHTML = quoteText;
-    document.querySelector("p.author").innerHTML = `-${quoteAuthor}`;
-  })
-  .catch((error) => {
-    console.error("Error fetching quote:", error);
-  });
+      document.querySelector("p.quote").innerHTML = quoteText;
+      document.querySelector("p.author").innerHTML = `-${quoteAuthor}`;
+    })
+    .catch((error) => {
+      console.error("Error fetching quote:", error);
+    });
 }
 
-
-// Load the daily quote when the page loads
 document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM fully loaded and parsed");
   getDailyQuote();
@@ -55,7 +52,6 @@ function getDailyVerse() {
     });
 }
 
-// Load the daily verse when the page loads
 document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM fully loaded and parsed");
   getDailyVerse();

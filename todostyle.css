@@ -13,8 +13,6 @@
   box-sizing: border-box;
 }
 
-
-
 .todo-lists {
   display: flex;
   flex-wrap: wrap;
@@ -122,7 +120,8 @@ li {
 }
 
 li.deleted-item {
-  animation: removed-item-animation 1s cubic-bezier(0.55, -0.04, 0.91, 0.94) forwards;
+  animation: removed-item-animation 1s cubic-bezier(0.55, -0.04, 0.91, 0.94)
+    forwards;
   transform-origin: 0% 100%;
 }
 
