@@ -4,13 +4,16 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
-
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron ."
   },
-  "author": "",
+  "author": "Jeremiah",
   "license": "ISC",
   "devDependencies": {
+    "@electron-forge/cli": "^7.4.0",
+    "@electron/packager": "^18.3.2",
     "electron": "^30.0.2"
+  },
+  "dependencies": {
+    "update-electron-app": "^3.0.0"
   }
 }
