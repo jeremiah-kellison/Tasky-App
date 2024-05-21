@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const project = {
         title: title,
         dueDate: formatDate(dueDate),
-        creationDate: new Date().toLocaleDateString(),
+        creationDate: formatDate(new Date()),
         tasks: [],
       };
   
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const task = {
         title: taskTitle,
         dueDate: formatDate(taskDueDate),
-        creationDate: new Date().toLocaleDateString(),
+        creationDate: formatDate(new Date()),
       };
       project.tasks.push(task);
     }
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const taskTitle = document.getElementById(`task-title-${projectIndex}`).value;
           const taskDueDate = document.getElementById(`task-due-date-${projectIndex}`).value;
           if (taskTitle && taskDueDate) {
-            addTask(projects[projectIndex], taskTitle, formatDate(taskDueDate));
+            addTask(projects[projectIndex], taskTitle, taskDueDate);
             saveProjectsToStorage();
             displayProjects();
           }
@@ -134,12 +134,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   
-    function formatDate(dateString) {
-      const date = new Date(dateString);
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const year = date.getFullYear();
-      return `${day}/${month}/${year}`;
+    function formatDate(date) {
+      const dateObj = new Date(date);
+      const day = String(dateObj.getDate()).padStart(2, '0');
+      const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const year = dateObj.getFullYear();
+      return `${month}/${day}/${year}`;
     }
   
     loadProjectsFromStorage();
