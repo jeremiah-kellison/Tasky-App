@@ -7,6 +7,7 @@
   --accent-color: black;
 }
 
+
 html {
     scroll-behavior: smooth;
   }
@@ -19,7 +20,10 @@ html {
 
 body {
   font-family: "Poppins", sans-serif;
+  background-color: #b0c4de; 
+
 }
+
 h1 #time {
   font-size: 24px;
   margin-left: 5px;

@@ -1,75 +1,134 @@
-project-container {
-    margin: 20px;
-    padding: 20px;
-    border: 2px solid var(--accent-color);
+:root {
+    --primary-color: #3d52a0;
+    --secondary-color: #7091e6;
+    --tertiary-color: #8697c4;
+    --fourth-color: #adbbda;
+    --fith-color: #ede8f5;
+    --accent-color: black;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .project-container {
+    background: var(--primary-color);
+    padding: 25px;
     border-radius: 10px;
-}
-
-.project-container h2 {
-    margin-bottom: 10px;
-}
-
-#project-form {
+    margin: 20px auto;
+    border: 2px solid var(--accent-color);
+    color: var(--fith-color);
+    max-width: 600px;
+  }
+  
+  .project-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--fith-color);
+  }
+  
+  #project-form {
     display: flex;
     flex-direction: column;
-    max-width: 300px;
-}
-
-#project-form label {
-    margin-bottom: 5px;
-}
-
-#project-form input {
+  }
+  
+  #project-form label {
     margin-bottom: 10px;
-    padding: 5px;
-}
-
-#project-form button {
+    color: var(--fith-color);
+  }
+  
+  #project-form input {
+    margin-bottom: 15px;
     padding: 10px;
-    background-color: var(--primary-color);
+    border-radius: 5px;
+    border: 2px solid var(--tertiary-color);
+    font-size: 16px;
+  }
+  
+  #project-form button {
+    padding: 10px;
+    background-color: var(--secondary-color);
     color: var(--fith-color);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-#project-form button:hover {
-    background-color: var(--secondary-color);
-}
-.project {
+    transition: background-color 0.3s ease;
+  }
+  
+  #project-form button:hover {
+    background-color: var(--tertiary-color);
+  }
+  
+  .project {
     margin-bottom: 20px;
     padding: 20px;
     border: 2px solid var(--accent-color);
     border-radius: 10px;
-}
-
-.add-task-btn {
+    background: var(--fith-color);
+    color: var(--accent-color);
+  }
+  
+ 
+  .add-task-btn {
     margin-top: 10px;
-    padding: 5px 10px;
-    background-color: var(--primary-color);
-    color: var(--fith-color);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.task {
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid var(--tertiary-color);
-    border-radius: 5px;
-}
-.task-options {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.delete-task-btn {
-    margin-left: 10px;
-    padding: 5px 10px;
+    padding: 10px 15px;
     background-color: var(--fourth-color);
     color: var(--accent-color);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .add-task-btn:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  .task {
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid var(--tertiary-color);
+    border-radius: 5px;
+    background: var(--fith-color);
+    color: var(--accent-color);
+  }
+  
+  .task-options {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .delete-task-btn {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: var(--primary-color);
+    color: var(--fith-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .delete-task-btn:hover {
+    background-color: var(--secondary-color);
+  }
+  .delete-project-btn {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: var(--fith-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .delete-project-btn:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  
