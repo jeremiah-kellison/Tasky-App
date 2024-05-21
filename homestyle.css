@@ -141,6 +141,74 @@ li {
   font-weight: bold;
 }
 
+.project-container {
+  background: var(--primary-color);
+  padding: 25px;
+  border-radius: 10px;
+  margin: 20px auto;
+  border: 2px solid var(--accent-color);
+  color: var(--fith-color);
+  max-width: 600px;
+}
+
+.project-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--fith-color);
+}
+
+.project-container p {
+  margin-bottom: 10px;
+}
+
+.project-container .task {
+  margin-top: 10px;
+  padding: 10px;
+  border: 2px solid var(--tertiary-color);
+  border-radius: 5px;
+  background: var(--fith-color);
+  color: var(--accent-color);
+}
+
+.project-container .task-options {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.project-container .delete-task-btn {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: var(--primary-color);
+  color: var(--fith-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.project-container .delete-task-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.project-container .delete-project-btn {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: var(--fith-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.project-container .delete-project-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+
+
+
+
 @keyframes new-item-animation {
   from {
     opacity: 0;
