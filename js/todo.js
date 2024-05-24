@@ -71,8 +71,8 @@ class ToDoList {
 
       let li = document.createElement("li");
       const todoItems = `<div title="Click to Complete">${this.todoValue.value}</div><div>
-                      <img class="edit todo-controls" src="images/pencil.png" />
-                      <img class="delete todo-controls" src="images/delete.png" /></div></div>`;
+                      <img class="edit todo-controls" src="../images/pencil.png" />
+                      <img class="delete todo-controls" src="../images/delete.png" /></div></div>`;
       li.innerHTML = todoItems;
       this.listItems.appendChild(li);
 
@@ -152,7 +152,7 @@ class ToDoList {
       element.parentElement.parentElement.querySelector("div").innerText;
     this.todoValue.value = itemText;
     this.addUpdate.onclick = () => this.updateTask(itemText);
-    this.addUpdate.src = "images/refresh.png";
+    this.addUpdate.src = "../images/refresh.png";
     this.todoValue.focus();
   }
 
@@ -174,7 +174,7 @@ class ToDoList {
         this.listItems.id
       );
       this.addUpdate.onclick = () => this.createToDoItems();
-      this.addUpdate.src = "images/plus.png";
+      this.addUpdate.src = "../images/plus.png";
       this.todoValue.value = "";
       this.setAlertMessage("Todo item Updated Successfully!");
     }
@@ -186,7 +186,7 @@ class ToDoList {
     if (index > -1) {
       element.style.textDecoration = "line-through";
       const img = document.createElement("img");
-      img.src = "images/check-mark.png";
+      img.src = "../images/check-mark.png";
       img.className = "todo-controls";
       element.appendChild(img);
       element.parentElement.querySelector(".edit").remove();
