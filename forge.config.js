@@ -47,7 +47,7 @@ module.exports = {
       config: {
         repository: {
           owner: 'jeremiah-kellison',
-          name: 'Tasky-App'
+          name: 'tasky-app'
         },
         prerelease: false,
         draft: true

@@ -1,16 +1,38 @@
 {
   "name": "tasky-app",
   "version": "1.0.1",
-  "description": "",
+  "description": "Task Manager App",
   "main": "main.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
+    "dist": "electron-builder",
     "publish": "env-cmd electron-forge publish"
   },
   "author": "Jeremiah",
   "license": "ISC",
+  "build": {
+    "appId": "com.jeremiah.tasky",
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "package.json",
+      "main.js",
+      "html/**/*",
+      "css/**/*",
+      "js/**/*",
+      "images/**/*"
+
+    ],
+   
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.productivity"
+    }
+  },
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",
     "@electron-forge/maker-deb": "^7.4.0",
@@ -19,11 +41,12 @@
     "@electron-forge/maker-zip": "^7.4.0",
     "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
     "@electron-forge/plugin-fuses": "^7.4.0",
-    "@electron-forge/publisher-github": "^7.4.0",
     "@electron/fuses": "^1.8.0",
-    "electron": "^30.0.2"
+    "electron": "^30.0.8",
+    "electron-builder": "^24.13.3"
   },
   "dependencies": {
+    "electron-is-dev": "^2.0.0",
     "electron-squirrel-startup": "^1.0.1",
     "env-cmd": "^10.1.0",
     "update-electron-app": "^3.0.0"
